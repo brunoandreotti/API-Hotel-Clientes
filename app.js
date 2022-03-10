@@ -4,6 +4,9 @@ const express = require('express')
 //Conexão com o banco
 const sequelize = require('./src/database/connection.js')
 
+//Models
+const Cliente = require('./src/models/clienteModel.js')
+
 const app = express()
 
 //Ler e enviar JSON na req e res
