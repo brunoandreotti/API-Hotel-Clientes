@@ -8,5 +8,6 @@ const ClienteController = require('../controllers/ClienteController.js')
 
 router.post('/create', ClienteController.create)
 router.get('/', ClienteController.showAll)
+router.get('/:id', ClienteController.showById)
 
 module.exports = router
