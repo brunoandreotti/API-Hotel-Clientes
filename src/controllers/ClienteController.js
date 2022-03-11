@@ -35,23 +35,19 @@ class ClienteController {
       !checkIn |
       !checkOut
     ) {
-      return res
-        .status(401)
-        .json({
-          status: 401,
-          message: 'Todos os campos precisam ser preenchidos!'
-        })
+      return res.status(401).json({
+        status: 401,
+        message: 'Todos os campos precisam ser preenchidos!'
+      })
     }
 
     const clienteExists = await Cliente.findOne({ where: { cpf } })
 
     if (clienteExists) {
-      return res
-        .status(401)
-        .json({
-          status: 401,
-          message: 'Cliente com o CPF informado já cadastrado!'
-        })
+      return res.status(401).json({
+        status: 401,
+        message: 'Cliente com o CPF informado já cadastrado!'
+      })
     }
 
     const newCliente = {
