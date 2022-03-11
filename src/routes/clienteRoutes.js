@@ -1,0 +1,11 @@
+const express = require('express')
+const router = express.Router()
+
+//Controller
+const ClienteController = require('../controllers/ClienteController.js')
+
+//Rotas
+
+router.post('/create', ClienteController.create)
+
+module.exports = router
