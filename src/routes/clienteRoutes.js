@@ -7,5 +7,6 @@ const ClienteController = require('../controllers/ClienteController.js')
 //Rotas
 
 router.post('/create', ClienteController.create)
+router.get('/', ClienteController.showAll)
 
 module.exports = router
