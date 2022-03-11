@@ -1,6 +1,18 @@
 const Cliente = require('../models/clienteModel')
 
 class ClienteController {
+  static async showAll(req, res) {
+    try {
+      const clientes = await Cliente.findAll({
+        attributes: { exclude: ['createdAt', 'updatedAt'] }
+      })
+
+      res.status(200).json(clientes)
+    } catch (error) {
+      return res.status(401).json({ status: 401, message: error.message })
+    }
+  }
+
   static async create(req, res) {
     const {
       nomeCompleto,
@@ -23,13 +35,23 @@ class ClienteController {
       !checkIn |
       !checkOut
     ) {
-      return res.status(401).json({status: 401, message: 'Todos os campos precisam ser preenchidos!'})
+      return res
+        .status(401)
+        .json({
+          status: 401,
+          message: 'Todos os campos precisam ser preenchidos!'
+        })
     }
 
-    const clienteExists = await Cliente.findOne({ where: { cpf }})
+    const clienteExists = await Cliente.findOne({ where: { cpf } })
 
-    if(clienteExists) {
-      return res.status(401).json({status: 401, message: 'Cliente com o CPF informado já cadastrado!'})
+    if (clienteExists) {
+      return res
+        .status(401)
+        .json({
+          status: 401,
+          message: 'Cliente com o CPF informado já cadastrado!'
+        })
     }
 
     const newCliente = {
@@ -45,9 +67,11 @@ class ClienteController {
 
     try {
       await Cliente.create(newCliente)
-      res.status(201).json({status: 201, message: 'Cliente cadastrado com sucesso!'})
+      res
+        .status(201)
+        .json({ status: 201, message: 'Cliente cadastrado com sucesso!' })
     } catch (error) {
-      return res.status(401).json({status: 401, message: error.message})
+      return res.status(401).json({ status: 401, message: error.message })
     }
   }
 }

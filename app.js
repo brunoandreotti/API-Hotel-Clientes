@@ -16,7 +16,7 @@ const clienteRoutes = require('./src/routes/clienteRoutes.js')
 app.use(express.json())
 
 //Rotas
-app.use('/cliente', clienteRoutes)
+app.use('/clientes', clienteRoutes)
 
 
 //Sincronização com o banco
