@@ -13,6 +13,25 @@ class ClienteController {
     }
   }
 
+  static async showById(req, res) {
+    const { id } = req.params
+
+    try {
+      const cliente = await Cliente.findByPk(id, {attributes: {exclude: ['createdAt', 'updatedAt']}})
+
+      if (!cliente) {
+        return res.status(401).json({
+          status: 401,
+          message: 'Cliente não encontrado!'
+        })
+      }
+
+      res.status(200).json(cliente)
+    } catch (error) {
+      return res.status(401).json({ status: 401, message: error.message })
+    }
+  }
+
   static async create(req, res) {
     const {
       nomeCompleto,
