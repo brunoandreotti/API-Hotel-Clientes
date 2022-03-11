@@ -1,5 +1,7 @@
 require('dotenv-safe/config.js')
 const express = require('express')
+const app = express()
+const PORT = process.env.PORT
 
 //Conexão com o banco
 const sequelize = require('./src/database/connection.js')
@@ -7,13 +9,14 @@ const sequelize = require('./src/database/connection.js')
 //Models
 const Cliente = require('./src/models/clienteModel.js')
 
-const app = express()
+//Routers
+const clienteRoutes = require('./src/routes/clienteRoutes.js')
 
 //Ler e enviar JSON na req e res
 app.use(express.json())
 
-const PORT = process.env.PORT
-
+//Rotas
+app.use('/cliente', clienteRoutes)
 
 
 //Sincronização com o banco
