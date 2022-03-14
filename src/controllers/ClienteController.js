@@ -17,7 +17,9 @@ class ClienteController {
     const { id } = req.params
 
     try {
-      const cliente = await Cliente.findByPk(id, {attributes: {exclude: ['createdAt', 'updatedAt']}})
+      const cliente = await Cliente.findByPk(id, {
+        attributes: { exclude: ['createdAt', 'updatedAt'] }
+      })
 
       if (!cliente) {
         return res.status(401).json({
