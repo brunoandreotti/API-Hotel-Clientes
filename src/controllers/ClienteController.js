@@ -36,7 +36,8 @@ class ClienteController {
 
   static async create(req, res) {
     const {
-      nomeCompleto,
+      primeiroNome,
+      sobrenome,
       cpf,
       email,
       telefone,
@@ -47,7 +48,8 @@ class ClienteController {
     } = req.body
 
     if (
-      !nomeCompleto ||
+      !primeiroNome ||
+      !sobrenome ||
       !cpf ||
       !email ||
       !telefone ||
@@ -72,7 +74,8 @@ class ClienteController {
     }
 
     const newCliente = {
-      nomeCompleto,
+      primeiroNome,
+      sobrenome,
       cpf,
       email,
       telefone,
@@ -95,7 +98,8 @@ class ClienteController {
   static async updateById(req, res) {
     const { id } = req.params
     const {
-      nomeCompleto,
+      primeiroNome,
+      sobrenome,
       cpf,
       email,
       telefone,
@@ -115,7 +119,8 @@ class ClienteController {
     }
 
     const novosDados = {
-      nomeCompleto,
+      primeiroNome,
+      sobrenome,
       cpf,
       email,
       telefone,
