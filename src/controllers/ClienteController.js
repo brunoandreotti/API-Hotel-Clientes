@@ -92,6 +92,55 @@ class ClienteController {
     }
   }
 
+  static async updateById(req, res) {
+    const { id } = req.params
+    const {
+      nomeCompleto,
+      cpf,
+      email,
+      telefone,
+      quarto,
+      formaPagamento,
+      checkIn,
+      checkOut
+    } = req.body
+
+    const cliente = await ClienteModel.findOne({ where: { id: id }, raw: true })
+
+    if (!cliente) {
+      return res.status(401).json({
+        status: 401,
+        message: 'Cliente não encontrado!'
+      })
+    }
+
+    const novosDados = {
+      nomeCompleto,
+      cpf,
+      email,
+      telefone,
+      quarto,
+      formaPagamento,
+      checkIn,
+      checkOut
+    }
+
+    try {
+      await ClienteModel.update(novosDados, {where: cliente})
+      return res
+        .status(200)
+        .json({ status: 200, message: 'Atualizado com sucesso!' })
+    } catch (error) {
+      return res
+        .status(400)
+        .json({ status: 400, message: `Algo deu errado: ${error}` })
+    }
+
+
+
+
+  }
+
   static async deleteById(req, res) {
     const { id } = req.params
 
@@ -115,6 +164,7 @@ class ClienteController {
         .json({ status: 401, message: `Algo deu errado: ${error}` })
     }
   }
+
 }
 
 module.exports = ClienteController

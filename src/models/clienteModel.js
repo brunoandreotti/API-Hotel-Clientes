@@ -5,7 +5,12 @@ const sequelize = require('../database/connection.js')
 const Cliente = sequelize.define('Cliente', {
   nomeCompleto: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      isAlpha: {
+        msg: 'O nome deve conter somente letras'
+      }
+    }
   },
   cpf: {
     type: DataTypes.STRING,
@@ -36,7 +41,12 @@ const Cliente = sequelize.define('Cliente', {
   },
   quarto: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      isInt: {
+        msg: 'Escreva um quarto válido'
+      }
+    }
   },
   formaPagamento: {
     type: DataTypes.STRING,

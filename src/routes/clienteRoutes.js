@@ -18,4 +18,7 @@ router.get('/:id', ClienteController.showById)
 //Rota deve deletar um cliente baseado em seu ID
 router.delete('/:id', ClienteController.deleteById)
 
+//Rota deve atualizar um cliente baseado em seu ID
+router.patch('/:id', ClienteController.updateById)
+
 module.exports = router
