@@ -93,7 +93,7 @@ class ClienteController {
   }
 
   static async deleteById(req, res) {
-    const id = req.params.id
+    const { id } = req.params
 
     const cliente = await ClienteModel.findOne({ where: { id: id }, raw: true })
 
