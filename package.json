@@ -16,8 +16,16 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
     "nodemon": "^2.0.15"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brunoandreotti/API-Mod-4-Resilia.git"
+  },
+  "bugs": {
+    "url": "https://github.com/brunoandreotti/API-Mod-4-Resilia/issues"
+  },
+  "homepage": "https://github.com/brunoandreotti/API-Mod-4-Resilia#readme",
+  "description": ""
 }
