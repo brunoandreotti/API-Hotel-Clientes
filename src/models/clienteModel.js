@@ -3,7 +3,16 @@ const { DataTypes } = require('sequelize')
 const sequelize = require('../database/connection.js')
 
 const Cliente = sequelize.define('Cliente', {
-  nomeCompleto: {
+  primeiroNome: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      isAlpha: {
+        msg: 'O nome deve conter somente letras'
+      }
+    }
+  },
+  sobrenome: {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
