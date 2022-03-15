@@ -1,23 +1,23 @@
-const Cliente = require('../models/clienteModel')
+const ClienteModel = require('../models/clienteModel')
 
 class ClienteController {
   static async showAll(req, res) {
     try {
-      const clientes = await Cliente.findAll({
+      const clientes = await ClienteModel.findAll({
         attributes: { exclude: ['createdAt', 'updatedAt'] }
       })
 
-      res.status(200).json(clientes)
+      return res.status(200).json({ resultado: clientes })
     } catch (error) {
       return res.status(401).json({ status: 401, message: error.message })
     }
   }
 
   static async showById(req, res) {
-    const { id } = req.params
+    const id = req.params.id
 
     try {
-      const cliente = await Cliente.findByPk(id, {
+      const cliente = await ClienteModel.findByPk(id, {
         attributes: { exclude: ['createdAt', 'updatedAt'] }
       })
 
@@ -28,7 +28,7 @@ class ClienteController {
         })
       }
 
-      res.status(200).json(cliente)
+      return res.status(200).json(cliente)
     } catch (error) {
       return res.status(401).json({ status: 401, message: error.message })
     }
@@ -47,13 +47,13 @@ class ClienteController {
     } = req.body
 
     if (
-      !nomeCompleto |
-      !cpf |
-      !email |
-      !telefone |
-      !quarto |
-      !formaPagamento |
-      !checkIn |
+      !nomeCompleto ||
+      !cpf ||
+      !email ||
+      !telefone ||
+      !quarto ||
+      !formaPagamento ||
+      !checkIn ||
       !checkOut
     ) {
       return res.status(401).json({
@@ -62,7 +62,7 @@ class ClienteController {
       })
     }
 
-    const clienteExists = await Cliente.findOne({ where: { cpf } })
+    const clienteExists = await ClienteModel.findOne({ where: { cpf: cpf } })
 
     if (clienteExists) {
       return res.status(401).json({
@@ -83,12 +83,36 @@ class ClienteController {
     }
 
     try {
-      await Cliente.create(newCliente)
+      await ClienteModel.create(newCliente)
       res
         .status(201)
         .json({ status: 201, message: 'Cliente cadastrado com sucesso!' })
     } catch (error) {
       return res.status(401).json({ status: 401, message: error.message })
+    }
+  }
+
+  static async deleteById(req, res) {
+    const { id } = req.params
+
+    const cliente = await ClienteModel.findOne({ where: { id: id }, raw: true })
+
+    if (!cliente) {
+      return res.status(401).json({
+        status: 401,
+        message: 'Cliente não encontrado!'
+      })
+    }
+
+    try {
+      await ClienteModel.destroy({ where: cliente })
+      return res
+        .status(200)
+        .json({ status: 200, message: 'Cliente deletado com sucesso!' })
+    } catch (error) {
+      return res
+        .status(401)
+        .json({ status: 401, message: `Algo deu errado: ${error}` })
     }
   }
 }

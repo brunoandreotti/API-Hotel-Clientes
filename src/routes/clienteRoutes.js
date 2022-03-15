@@ -4,7 +4,6 @@ const router = express.Router()
 //Controller
 const ClienteController = require('../controllers/ClienteController.js')
 
-
 //Rotas
 
 //Rota deve criar um novo cliente
@@ -15,5 +14,8 @@ router.get('/', ClienteController.showAll)
 
 //Rota deve listar um cliente baseado em seu ID
 router.get('/:id', ClienteController.showById)
+
+//Rota deve deletar um cliente baseado em seu ID
+router.delete('/:id', ClienteController.deleteById)
 
 module.exports = router
