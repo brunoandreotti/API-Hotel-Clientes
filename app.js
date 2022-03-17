@@ -21,6 +21,9 @@ const clienteRoutes = require('./src/routes/clienteRoutes.js')
 app.use(express.json())
 
 //Rotas
+app.get('/', (req, res) => {
+  res.status(200).json({message: 'API Hotel Módulo 4 Resilia - Grupo 1'})
+})
 app.use('/clientes', clienteRoutes)
 
 

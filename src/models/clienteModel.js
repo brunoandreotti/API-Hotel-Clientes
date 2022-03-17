@@ -6,18 +6,36 @@ const sequelize = require('../database/connection.js')
 const Cliente = sequelize.define('Cliente', {
   primeiroNome: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      notEmpty: {
+        msg: 'Insira o primeiro nome'
+      }
+    }
   },
   sobrenome: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      notEmpty: {
+        msg: 'Insira o sobrenome'
+      }
+    }
+    
   },
   cpf: {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
       isAlphanumeric: {
-        msg: 'Escreva somente os números do CPF'
+        msg: 'Escreva o CPF sem pontos ou traços'
+      },
+      notEmpty: {
+        msg: 'Insira o sobrenome'
+      },
+      len: {
+        args: [11, 11],
+        msg: 'Escreva o CPF sem pontos ou traços'
       }
     }
   },
@@ -35,7 +53,11 @@ const Cliente = sequelize.define('Cliente', {
     allowNull: false,
     validate: {
       isAlphanumeric: {
-        msg: 'Escreva somente os números do telefone'
+        msg: 'Escreva somente os números do telefone/celular'
+      },
+      len: {
+        args: [8, 11],
+        msg: 'Escreva somente os números do telefone/celular'
       }
     }
   },
@@ -44,7 +66,7 @@ const Cliente = sequelize.define('Cliente', {
     allowNull: false,
     validate: {
       isInt: {
-        msg: 'Escreva um quarto válido'
+        msg: 'Escreva um quarto somente com números'
       }
     }
   },

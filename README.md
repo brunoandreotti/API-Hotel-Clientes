@@ -82,7 +82,12 @@ checkOut: '26/11/2022'
 
 # Validação de dados
  Foi adicionada as seguintes validações para os dados recebidos nas requisições: <br><br>
- <b>[POST] </b> /clientes/create <br> - O campo "email", deverá ser  um endereço de email.<br><br>
+ <b>[POST] </b> /clientes/create <br>
+   - O campo "primeiroNome" e "sobrenome", deverá ser uma string.
+   - O campo "cpf", deverá ser uma string com um endereço de email.<br>
+   - O campo "email", deverá ser uma string com um endereço de email.<br>
+   - O campo "email", deverá ser uma string com um endereço de email.<br>
+
  <b>[PATCH] </b> /obras : <br>
  
  
