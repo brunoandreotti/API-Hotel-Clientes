@@ -3,6 +3,9 @@ const express = require('express')
 const app = express()
 const PORT = process.env.PORT
 
+//Seeder
+const seeder = require('./src/seeders/clienteSeeder.js')
+
 //Conexão com o banco
 const sequelize = require('./src/database/connection.js')
 
@@ -23,6 +26,7 @@ app.use('/clientes', clienteRoutes)
 async function sync() {
   try {
     await sequelize.sync()
+    //await seeder()
     app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`))
   } catch (error) {
     console.log(`Houve um erro ao sincronizar com o banco: ${error}`)
