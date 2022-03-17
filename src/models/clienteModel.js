@@ -1,25 +1,16 @@
 const { DataTypes } = require('sequelize')
+const moment = require('moment')
 
 const sequelize = require('../database/connection.js')
 
 const Cliente = sequelize.define('Cliente', {
   primeiroNome: {
     type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      isAlpha: {
-        msg: 'O nome deve conter somente letras'
-      }
-    }
+    allowNull: false
   },
   sobrenome: {
     type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      isAlpha: {
-        msg: 'O nome deve conter somente letras'
-      }
-    }
+    allowNull: false
   },
   cpf: {
     type: DataTypes.STRING,
@@ -71,14 +62,18 @@ const Cliente = sequelize.define('Cliente', {
     type: DataTypes.DATEONLY,
     allowNull: false,
     validate: {
-      isDate: true
+      isDate: {
+        msg: 'Insira uma data válida para o check in'
+      }
     }
   },
   checkOut: {
     type: DataTypes.DATEONLY,
     allowNull: false,
     validate: {
-      isDate: true
+      isDate: {
+        msg: 'Insira uma data válida para o check out'
+      }
     }
   }
 })

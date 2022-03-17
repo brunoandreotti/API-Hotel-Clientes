@@ -1,10 +1,13 @@
 const ClienteModel = require('../models/clienteModel')
+const ClienteServices = require('../services/ClienteServices')
+const moment = require('moment')
 
 class ClienteController {
   static async showAll(req, res) {
     try {
       const clientes = await ClienteModel.findAll({
-        attributes: { exclude: ['createdAt', 'updatedAt'] }
+        attributes: { exclude: ['createdAt', 'updatedAt'] },
+        raw: true
       })
 
       return res.status(200).json({ resultado: clientes })
@@ -17,9 +20,7 @@ class ClienteController {
     const id = req.params.id
 
     try {
-      const cliente = await ClienteModel.findByPk(id, {
-        attributes: { exclude: ['createdAt', 'updatedAt'] }
-      })
+      const cliente = await ClienteServices.findClienteById(id)
 
       if (!cliente) {
         return res.status(401).json({
@@ -30,7 +31,7 @@ class ClienteController {
 
       return res.status(200).json(cliente)
     } catch (error) {
-      return res.status(401).json({ status: 401, message: error.message })
+      return res.status(500).json({ status: 401, message: error.message })
     }
   }
 
@@ -47,24 +48,26 @@ class ClienteController {
       checkOut
     } = req.body
 
-    if (
-      !primeiroNome ||
-      !sobrenome ||
-      !cpf ||
-      !email ||
-      !telefone ||
-      !quarto ||
-      !formaPagamento ||
-      !checkIn ||
-      !checkOut
-    ) {
+    const verifiedFields = ClienteServices.verifyFields(
+      primeiroNome,
+      sobrenome,
+      cpf,
+      email,
+      telefone,
+      quarto,
+      formaPagamento,
+      checkIn,
+      checkOut
+    )
+
+    if (verifiedFields == false) {
       return res.status(401).json({
         status: 401,
-        message: 'Todos os campos precisam ser preenchidos!'
+        message: 'Todos os campos precisam ser preenchidos'
       })
     }
 
-    const clienteExists = await ClienteModel.findOne({ where: { cpf: cpf } })
+    const clienteExists = await ClienteServices.verifyClienteExists(cpf)
 
     if (clienteExists) {
       return res.status(401).json({
@@ -81,12 +84,12 @@ class ClienteController {
       telefone,
       quarto,
       formaPagamento,
-      checkIn,
-      checkOut
+      checkIn: moment(checkIn, 'DD/MM/YYYY').format('YYYY-MM-DD'),
+      checkOut: moment(checkOut, 'DD/MM/YYYY').format('YYYY-MM-DD')
     }
 
     try {
-      await ClienteModel.create(newCliente)
+      await ClienteServices.createNewCliente(newCliente)
       res
         .status(201)
         .json({ status: 201, message: 'Cliente cadastrado com sucesso!' })
@@ -109,12 +112,21 @@ class ClienteController {
       checkOut
     } = req.body
 
-    const cliente = await ClienteModel.findOne({ where: { id: id }, raw: true })
+    const cliente = await ClienteServices.findClienteById(id)
 
     if (!cliente) {
       return res.status(401).json({
         status: 401,
         message: 'Cliente não encontrado!'
+      })
+    }
+
+    const clienteExists = await ClienteServices.verifyClienteExists(cpf)
+
+    if (clienteExists) {
+      return res.status(401).json({
+        status: 401,
+        message: 'Cliente com o CPF informado já cadastrado!'
       })
     }
 
@@ -126,12 +138,12 @@ class ClienteController {
       telefone,
       quarto,
       formaPagamento,
-      checkIn,
-      checkOut
+      checkIn: moment(checkIn, 'DD/MM/YYYY').format('YYYY-MM-DD'),
+      checkOut: moment(checkOut, 'DD/MM/YYYY').format('YYYY-MM-DD')
     }
 
     try {
-      await ClienteModel.update(novosDados, {where: cliente})
+      await ClienteModel.update(novosDados, { where: cliente })
       return res
         .status(200)
         .json({ status: 200, message: 'Atualizado com sucesso!' })
@@ -140,16 +152,12 @@ class ClienteController {
         .status(400)
         .json({ status: 400, message: `Algo deu errado: ${error}` })
     }
-
-
-
-
   }
 
   static async deleteById(req, res) {
     const { id } = req.params
 
-    const cliente = await ClienteModel.findOne({ where: { id: id }, raw: true })
+    const cliente = await ClienteServices.findClienteById(id)
 
     if (!cliente) {
       return res.status(401).json({
@@ -169,7 +177,6 @@ class ClienteController {
         .json({ status: 401, message: `Algo deu errado: ${error}` })
     }
   }
-
 }
 
 module.exports = ClienteController

@@ -1,4 +1,6 @@
-require('dotenv-safe/config.js')
+require('dotenv-safe').config({
+  path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
+})
 const express = require('express')
 const app = express()
 const PORT = process.env.PORT
@@ -34,3 +36,5 @@ async function sync() {
 }
 
 sync()
+
+module.exports = app
