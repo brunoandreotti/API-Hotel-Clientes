@@ -1,5 +1,4 @@
 const { DataTypes } = require('sequelize')
-const moment = require('moment')
 
 const sequelize = require('../database/connection.js')
 
@@ -21,7 +20,6 @@ const Cliente = sequelize.define('Cliente', {
         msg: 'Insira o sobrenome'
       }
     }
-    
   },
   cpf: {
     type: DataTypes.STRING,
@@ -67,6 +65,10 @@ const Cliente = sequelize.define('Cliente', {
     validate: {
       isInt: {
         msg: 'Escreva um quarto somente com números'
+      },
+      max: {
+        args: 999,
+        msg: 'Insira um número de quarto válido (1 até 999)'
       }
     }
   },

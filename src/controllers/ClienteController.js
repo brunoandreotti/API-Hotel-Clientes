@@ -121,13 +121,15 @@ class ClienteController {
       })
     }
 
-    const clienteExists = await ClienteServices.verifyClienteExists(cpf)
+    if (cpf) {
+      const clienteExists = await ClienteServices.verifyClienteExists(cpf)
 
-    if (clienteExists) {
-      return res.status(401).json({
-        status: 401,
-        message: 'Cliente com o CPF informado já cadastrado!'
-      })
+      if (clienteExists) {
+        return res.status(401).json({
+          status: 401,
+          message: 'Cliente com o CPF informado já cadastrado!'
+        })
+      }
     }
 
     const novosDados = {
@@ -138,8 +140,16 @@ class ClienteController {
       telefone,
       quarto,
       formaPagamento,
-      checkIn: moment(checkIn, 'DD/MM/YYYY').format('YYYY-MM-DD'),
-      checkOut: moment(checkOut, 'DD/MM/YYYY').format('YYYY-MM-DD')
+      checkIn,
+      checkOut
+    }
+
+    if (checkIn) {
+      novosDados.checkIn = moment(checkIn, 'DD/MM/YYYY').format('YYYY-MM-DD')
+    }
+
+    if (checkOut) {
+      novosDados.checkOut = moment(checkOut, 'DD/MM/YYYY').format('YYYY-MM-DD')
     }
 
     try {

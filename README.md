@@ -14,7 +14,7 @@
        <br />
     <br />
     <h1 align="center">
-    <img src="./readme/pensamentos.gif" alt="gif-readme">
+    <img src="./readme/api.gif" alt="gif-readme">
  </h1>
   </p>
 </p>
@@ -36,6 +36,7 @@ Nesta aplicação é possível cadastrar, listar, atualizar e deletar clientes.
 ✔ Sequelize <br>
 ✔ CRUD com Sequelize <br>
 ✔ Padrão MVC
+✔ Testes Unitários e Teste de Integração
 
 
 # Rotas da aplicação:
@@ -83,15 +84,27 @@ checkOut: '26/11/2022'
 # Validação de dados
  Foi adicionada as seguintes validações para os dados recebidos nas requisições: <br><br>
  <b>[POST] </b> /clientes/create <br>
-   - O campo "primeiroNome" e "sobrenome", deverá ser uma string.
-   - O campo "cpf", deverá ser uma string com um endereço de email.<br>
-   - O campo "email", deverá ser uma string com um endereço de email.<br>
-   - O campo "email", deverá ser uma string com um endereço de email.<br>
+   - Todos os campos precisam ser enviados no corpo da requisição.
+   - Os campos "primeiroNome" e "sobrenome" deverão ser uma string.
+   - O campo "cpf" deverá ser uma string com os 11 números referentes ao CPF.<br>
+   - O campo "email" deverá ser uma string com um email.<br>
+   - O campo "telefone" deverá ser uma string contendo os números do telefone/celular.<br>
+   - O campo "quarto" deverá ser um número inteiro de no máximo 3 dígitos.<br>
+   - O campo "formaPagamento" deverá ser uma string contendo algum dos valores: 'dinheiro', 'crédito' ou 'débito'<br>
+   - Os campos "checkIn" e "checkOut" deverão ser uma string contendo uma data: 'DD/MM/AAAA'.
 
- <b>[PATCH] </b> /obras : <br>
+ <b>[PATCH] </b> /clientes/:id
+   - Todos os campos podem ser atualizados ao mesmo tempo, bem como um campo de cada vez.
+   - Os campos "primeiroNome" e "sobrenome" deverão ser uma string.
+   - O campo "cpf" deverá ser uma string com os 11 números referentes ao CPF.<br>
+   - O campo "email" deverá ser uma string com um email.<br>
+   - O campo "telefone" deverá ser uma string contendo os números do telefone/celular.<br>
+   - O campo "quarto" deverá ser um número inteiro de no máximo 3 dígitos.<br>
+   - O campo "formaPagamento" deverá ser uma string contendo algum dos valores: 'dinheiro', 'crédito' ou 'débito'<br>
+   - Os campos "checkIn" e "checkOut" deverão ser uma string contendo uma data: 'DD/MM/AAAA'.
  
  
- <b>[PUT] </b> /obras/:id : <br>
+ 
 
 # Rodando o projeto:
 
@@ -117,7 +130,11 @@ $ npm start
 
 # Utilize o Insomnia para realizar as requisições nas rotas
 
-#Obs: Caso queira popular o banco de dados, acesse o arquivo 'app.js' no VSCode, remova o '//' da linha 29 e execute o comando npm start
+#Obs: Caso queira popular o banco de dados, acesse o arquivo 'app.js' no VSCode, remova o '//' da linha 29 e execute o comando:
+$ npm start
+
+# Para rodar os testes automatizados use o seguinte comando:
+$ npm run test
 
 ```
 
@@ -128,7 +145,7 @@ $ npm start
 
 # Tecnologias utilizadas: 
 <p align="center">
-<a href="https://nodejs.org/en/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" height="40" width="40" /></a> <a href="https://expressjs.com/pt-br/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original-wordmark.svg" height="40" width="40" /></a> <a href="https://insomnia.rest/download"><img src="https://raw.githubusercontent.com/brunoandreotti/biblioteca-backend/79c23c6a4bdd0bc6cb95463ee47741f2226cb0b1/readme/insomnia.svg" height="40" width="40" /></a> <a href="https://sequelize.org"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sequelize/sequelize-original.svg" height="40" width="40" /></a> <a href="https://sequelize.org"><img src="./readme/sqlite-icon.svg" height="40" width="40" /></a>
+<a href="https://nodejs.org/en/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" height="40" width="40" /></a> <a href="https://expressjs.com/pt-br/"><img src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge" height="40" width="40" /></a> <a href="https://insomnia.rest/download"><img src="https://raw.githubusercontent.com/brunoandreotti/biblioteca-backend/79c23c6a4bdd0bc6cb95463ee47741f2226cb0b1/readme/insomnia.svg" height="40" width="40" /></a> <a href="https://sequelize.org"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sequelize/sequelize-original.svg" height="40" width="40" /></a> <a href="https://www.sqlite.org/index.html"><img src="./readme/sqlite-icon.svg" height="40" width="40" /></a> <a href="https://jestjs.io/pt-BR/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" height="40" width="40" /></a>
 </p>
 
 
