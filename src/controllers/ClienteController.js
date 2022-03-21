@@ -156,11 +156,11 @@ class ClienteController {
       await ClienteModel.update(novosDados, { where: cliente })
       return res
         .status(200)
-        .json({ status: 200, message: 'Atualizado com sucesso!' })
+        .json({ status: 200, message: 'Cliente atualizado com sucesso!' })
     } catch (error) {
       return res
-        .status(400)
-        .json({ status: 400, message: `Algo deu errado: ${error}` })
+        .status(401)
+        .json({ status: 401, message: `${error.message}` })
     }
   }
 
