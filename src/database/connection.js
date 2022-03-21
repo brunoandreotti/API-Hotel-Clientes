@@ -1,6 +1,6 @@
 const { Sequelize } = require('sequelize')
 require('dotenv-safe').config({
-  path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
+  path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env.example' || '.env'
 })
 
 const sequelize = new Sequelize(process.env.DB_URL)
