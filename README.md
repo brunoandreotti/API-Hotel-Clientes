@@ -138,6 +138,22 @@ $ npm run test
 
 ```
 
+### Dependências:
+```javascript
+"dependencies": {
+    "dotenv-safe": "^8.2.0",
+    "express": "^4.17.3",
+    "moment": "^2.29.1",
+    "sequelize": "^6.17.0",
+    "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.2.2"
+  }
+```
+
 
 
 
