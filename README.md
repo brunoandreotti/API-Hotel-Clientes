@@ -140,6 +140,9 @@ $ npm run test
 
 ```
 
+### Ou acesse a aplicação:
+https://api-mod-4-resilia.herokuapp.com
+
 ### Dependências:
 ```javascript
 "dependencies": {
