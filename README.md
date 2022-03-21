@@ -35,7 +35,7 @@ Nesta aplicação é possível cadastrar, listar, atualizar e deletar clientes.
 ✔ SQLite3 <br>
 ✔ Sequelize <br>
 ✔ CRUD com Sequelize <br>
-✔ Padrão MVC
+✔ Padrão MVC <br>
 ✔ Testes Unitários e Teste de Integração
 
 
@@ -151,4 +151,5 @@ $ npm run test
 
 
 ---
-**Desenvolvido por <a href="https://www.linkedin.com/in/bruno-andreotti/">Bruno Andreotti</a> .** 
+**Desenvolvido por <a href="https://www.linkedin.com/in/bruno-andreotti/"> Bruno Andreotti</a>, <a href="https://www.linkedin.com/in/denise-g-oliveira/"> Denise Oliveira </a>, <a href="https://www.linkedin.com/in/heitorschumann/"> Heitor Schumann </a>, <a href="https://www.linkedin.com/in/henrique-ferraz-a46123219/"> Henrique Ferraz </a>, <a href="https://www.linkedin.com/in/murilo-antunes-bb1143228/"> Murilo Antunes </a>.**
+
