@@ -7,8 +7,8 @@ const Cliente = sequelize.define('Cliente', {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      isAlpha: {
-        msg: 'O nome deve conter somente letras'
+      notEmpty: {
+        msg: 'Insira o primeiro nome'
       }
     }
   },
@@ -16,8 +16,8 @@ const Cliente = sequelize.define('Cliente', {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      isAlpha: {
-        msg: 'O nome deve conter somente letras'
+      notEmpty: {
+        msg: 'Insira o sobrenome'
       }
     }
   },
@@ -26,7 +26,14 @@ const Cliente = sequelize.define('Cliente', {
     allowNull: false,
     validate: {
       isAlphanumeric: {
-        msg: 'Escreva somente os números do CPF'
+        msg: 'Escreva o CPF sem pontos ou traços'
+      },
+      notEmpty: {
+        msg: 'Insira o sobrenome'
+      },
+      len: {
+        args: [11, 11],
+        msg: 'Escreva o CPF sem pontos ou traços'
       }
     }
   },
@@ -44,7 +51,11 @@ const Cliente = sequelize.define('Cliente', {
     allowNull: false,
     validate: {
       isAlphanumeric: {
-        msg: 'Escreva somente os números do telefone'
+        msg: 'Escreva somente os números do telefone/celular'
+      },
+      len: {
+        args: [8, 11],
+        msg: 'Escreva somente os números do telefone/celular'
       }
     }
   },
@@ -53,7 +64,11 @@ const Cliente = sequelize.define('Cliente', {
     allowNull: false,
     validate: {
       isInt: {
-        msg: 'Escreva um quarto válido'
+        msg: 'Escreva um quarto somente com números'
+      },
+      max: {
+        args: 999,
+        msg: 'Insira um número de quarto válido (1 até 999)'
       }
     }
   },
@@ -71,14 +86,18 @@ const Cliente = sequelize.define('Cliente', {
     type: DataTypes.DATEONLY,
     allowNull: false,
     validate: {
-      isDate: true
+      isDate: {
+        msg: 'Insira uma data válida para o check in'
+      }
     }
   },
   checkOut: {
     type: DataTypes.DATEONLY,
     allowNull: false,
     validate: {
-      isDate: true
+      isDate: {
+        msg: 'Insira uma data válida para o check out'
+      }
     }
   }
 })

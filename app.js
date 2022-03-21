@@ -1,7 +1,12 @@
-require('dotenv-safe/config.js')
+require('dotenv-safe').config({
+  path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
+})
 const express = require('express')
 const app = express()
 const PORT = process.env.PORT
+
+//Seeder
+const seeder = require('./src/seeders/clienteSeeder.js')
 
 //Conexão com o banco
 const sequelize = require('./src/database/connection.js')
@@ -16,6 +21,9 @@ const clienteRoutes = require('./src/routes/clienteRoutes.js')
 app.use(express.json())
 
 //Rotas
+app.get('/', (req, res) => {
+  res.status(200).json({message: 'API Hotel Módulo 4 Resilia - Grupo 1'})
+})
 app.use('/clientes', clienteRoutes)
 
 
@@ -23,6 +31,7 @@ app.use('/clientes', clienteRoutes)
 async function sync() {
   try {
     await sequelize.sync()
+    //await seeder()
     app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`))
   } catch (error) {
     console.log(`Houve um erro ao sincronizar com o banco: ${error}`)
@@ -30,3 +39,5 @@ async function sync() {
 }
 
 sync()
+
+module.exports = app

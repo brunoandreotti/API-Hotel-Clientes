@@ -2,14 +2,16 @@
   "dependencies": {
     "dotenv-safe": "^8.2.0",
     "express": "^4.17.3",
-    "pg": "^8.7.3",
-    "pg-hstore": "^2.3.4",
-    "sequelize": "^6.17.0"
+    "moment": "^2.29.1",
+    "sequelize": "^6.17.0",
+    "sqlite3": "^5.0.2"
   },
   "name": "api-mod-4",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
+    "pretest": "NODE_ENV=test node ./src/database/sync-db-test.js",
+    "test": "jest",
     "start": "node ./app.js",
     "dev": "nodemon ./app.js"
   },
@@ -17,7 +19,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.2.2"
   },
   "repository": {
     "type": "git",
