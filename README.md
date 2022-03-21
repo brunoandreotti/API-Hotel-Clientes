@@ -51,15 +51,15 @@ Nesta aplicação é possível cadastrar, listar, atualizar e deletar clientes.
 
 ```javascript
 {
-primeiroNome: 'Teste',
-sobrenome: 'Teste',
-cpf: '16340645861',
-email: 'teste@email.com',
-telefone: '16912345678',
-quarto: 100,
-formaPagamento: 'crédito',
-checkIn: '22/11/2022',
-checkOut: '23/11/2022'
+"primeiroNome": "Teste",
+"sobrenome": "Teste",
+"cpf": "16340645861",
+"email": "teste@email.com",
+"telefone": "16912345678",
+"quarto": 100,
+"formaPagamento": "crédito",
+"checkIn": "22/11/2022",
+"checkOut": "23/11/2022"
 }
 ```
 
@@ -67,15 +67,15 @@ checkOut: '23/11/2022'
 
 ```javascript
 {
-primeiroNome: 'Teste',
-sobrenome: 'Atualizado',
-cpf: '64340335898',
-email: 'testeatualizado@email.com',
-telefone: '16987654321',
-quarto: 150,
-formaPagamento: 'dinheiro',
-checkIn: '25/11/2022',
-checkOut: '26/11/2022'
+"primeiroNome": "Teste",
+"sobrenome": "Atualizado",
+"cpf": "64340335898",
+"email": "testeatualizado@email.com",
+"telefone": "16912345678",
+"quarto": 150,
+"formaPagamento": "dinheiro",
+"checkIn": "22/11/2022",
+"checkOut": "23/11/2022"
 }
 ```
 
