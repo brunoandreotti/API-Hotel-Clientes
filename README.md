@@ -117,10 +117,10 @@ Antes de começar, você precisará instalar em sua máquina as seguintes ferram
 
 ```bash
 # Clone este repositório
-$ git clone https://github.com/brunoandreotti/pasta-projeto
+$ git clone https://github.com/brunoandreotti/API-Hotel-Clientes
 
 # Acesse a pasta do projeto no terminal
-$ cd pasta-projeto 
+$ cd API-Hotel-Clientes
 
 # Instale as dependências do projeto
 $ npm install
