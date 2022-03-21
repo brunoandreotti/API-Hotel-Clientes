@@ -10,8 +10,8 @@ async function seed() {
       telefone: '16988391461',
       quarto: 100,
       formaPagamento: 'crédito',
-      checkIn: '22/11/2022',
-      checkOut: '23/11/2023'
+      checkIn: '2022-11-22',
+      checkOut: '2022-11-23'
     },
     {
       primeiroNome: 'Teste',
@@ -21,8 +21,8 @@ async function seed() {
       telefone: '16988391461',
       quarto: 101,
       formaPagamento: 'débito',
-      checkIn: '22/11/2022',
-      checkOut: '23/11/2023'
+      checkIn: '2022-11-22',
+      checkOut: '2022-11-22'
     },
     {
       primeiroNome: 'Teste',
@@ -32,8 +32,8 @@ async function seed() {
       telefone: '16988391461',
       quarto: 102,
       formaPagamento: 'dinheiro',
-      checkIn: '22/11/2022',
-      checkOut: '23/11/2023'
+      checkIn: '2022-11-22',
+      checkOut: '2022-11-22'
     }
   ])
 }

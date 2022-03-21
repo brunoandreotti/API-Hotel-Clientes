@@ -130,3 +130,4 @@ dist
 .pnp.*
 
 /src/database/database.sqlite
+/src/database/database-teste.sqlite

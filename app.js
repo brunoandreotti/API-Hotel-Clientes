@@ -1,4 +1,6 @@
-require('dotenv-safe/config.js')
+require('dotenv-safe').config({
+  path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
+})
 const express = require('express')
 const app = express()
 const PORT = process.env.PORT
@@ -19,6 +21,9 @@ const clienteRoutes = require('./src/routes/clienteRoutes.js')
 app.use(express.json())
 
 //Rotas
+app.get('/', (req, res) => {
+  res.status(200).json({message: 'API Hotel Módulo 4 Resilia - Grupo 1'})
+})
 app.use('/clientes', clienteRoutes)
 
 
@@ -34,3 +39,5 @@ async function sync() {
 }
 
 sync()
+
+module.exports = app
