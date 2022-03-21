@@ -133,7 +133,8 @@ $ npm start
 #Obs: Caso queira popular o banco de dados, acesse o arquivo 'app.js' no VSCode, remova o '//' da linha 29 e execute o comando:
 $ npm start
 
-# Para rodar os testes automatizados use o seguinte comando:
+# Para rodar os testes automatizados use os seguintes comandos:
+$ npm install -g win-node-env (caso esteja utilizando Windows)
 $ npm run test
 
 ```
