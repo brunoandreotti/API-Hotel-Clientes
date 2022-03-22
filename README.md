@@ -141,6 +141,7 @@ $ npm run test
 ```
 
 ### Ou acesse a aplicação:
+Também é possível acessar as rotas da aplicação através da URL:
 https://api-mod-4-resilia.herokuapp.com
 
 ### Dependências:
