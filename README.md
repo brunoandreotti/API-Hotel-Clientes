@@ -131,8 +131,8 @@ $ npm start
 # Utilize o Insomnia para realizar as requisições nas rotas na URL:
 http://localhost:3000/
 
-#Obs: Caso queira popular o banco de dados, acesse o arquivo 'app.js' no VSCode, remova o '//' da linha 29 e execute o comando:
-$ npm start
+#Obs: Caso queira popular o banco de dados, execute o comando:
+$ npm run seed
 
 # Para rodar os testes automatizados use os seguintes comandos:
 $ npm install -g win-node-env (caso esteja utilizando Windows)
