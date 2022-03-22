@@ -1,5 +1,15 @@
 const ClienteModel = require('../models/clienteModel.js')
 
+const sequelize = require('../database/connection.js')
+
+async function sync() {
+  try {
+    await sequelize.sync({ force: true })
+  } catch (error) {
+    console.log(`Houve um erro ao sincronizar com o banco: ${error}`)
+  }
+}
+
 async function seed() {
   await ClienteModel.bulkCreate([
     {
@@ -38,4 +48,9 @@ async function seed() {
   ])
 }
 
-module.exports = seed
+async function run() {
+  await sync()
+  await seed()
+}
+
+run()
