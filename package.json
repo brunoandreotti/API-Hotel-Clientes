@@ -13,7 +13,8 @@
     "pretest": "NODE_ENV=test node ./src/database/sync-db-test.js",
     "test": "jest",
     "start": "node ./app.js",
-    "dev": "nodemon ./app.js"
+    "dev": "nodemon ./app.js",
+    "seed": "node ./src/seeders/clienteSeeder.js"
   },
   "keywords": [],
   "author": "",
